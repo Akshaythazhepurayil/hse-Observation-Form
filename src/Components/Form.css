@@ -1,0 +1,9 @@
+input{
+    width: 80%;
+    height: 40px;
+    margin: 5px;
+}
+.submitBtn{
+    height: 40px;
+    margin-left: 60%;
+}
