@@ -7,7 +7,13 @@ function App() {
       <div className="formHeader">
         <h2>Form</h2>
       </div>
-      <div>
+      <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}>
         <HSEObservationForm />
       </div>
     </div>

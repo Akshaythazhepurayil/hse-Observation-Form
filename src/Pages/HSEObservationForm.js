@@ -7,14 +7,7 @@ function HSEObservationForm() {
       <div>
         <h1>HSE Observation Form</h1>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
+      <div>
         <Form />
       </div>
     </div>
