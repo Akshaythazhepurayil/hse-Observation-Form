@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Form.css";
 import Table from "./Table";
-import GridSection from "./GridSection";
 
 function Form() {
-  const [show, setShow] = useState(false);
   const url = "http://localhost:3306/api/MainMenu/formdb";
+  const [rowCount, setRowCount] = useState(1);
   const [formData, setFormData] = useState({
     iTransId: "",
     DocDate: "",
@@ -50,14 +49,31 @@ function Form() {
       });
   };
 
+  const handleRemoveData = (index) => {
+    const updatedFormData = { ...formData };
+    updatedFormData.Body.splice(index, 1);
+    setRowCount(rowCount - 1);
+    setFormData(updatedFormData);
+  };
+
+  const handleAddRow = () => {
+    const updatedFormData = { ...formData };
+    updatedFormData.Body.push({
+      Observation: "",
+      RiskLevel: "",
+      ActionReq: "",
+      ActionBy: "",
+      TargetDate: "",
+      Images: "",
+    });
+    setRowCount(rowCount + 1);
+    setFormData(updatedFormData);
+  };
+
   return (
     <>
       <div>
-        <form 
-        onSubmit={(e)=> {e.preventDefault();
-          handleSubmit(e);
-          setShow(true);
-          }}>
+        <form onSubmit={handleSubmit}>
           <input
             onChange={handleInputChange}
             type="number"
@@ -106,17 +122,119 @@ function Form() {
             placeholder="Signature"
             value={formData.Signature}
           />
-          <button className="submitBtn" 
-          type="submit" 
-          >
-            Submit
-          </button>
+
+          <h2>Grid Section</h2>
+          <div className="form-table-container">
+            <table className="form-table">
+              <thead>
+                <tr>
+                  <th>Observation</th>
+                  <th>Risk Level</th>
+                  <th>Action Required</th>
+                  <th>Action By</th>
+                  <th>Target Date</th>
+                  <th>Images</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {formData.Body.map((row, index) => (
+                  <tr key={index}>
+                    <td>
+                      <input
+                        className="input"
+                        type="text"
+                        name="Observation"
+                        value={row.Observation}
+                        onChange={(e) => handleInputChange(e, index)}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="input"
+                        type="text"
+                        name="RiskLevel"
+                        value={row.RiskLevel}
+                        onChange={(e) => handleInputChange(e, index)}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="input"
+                        type="text"
+                        name="ActionReq"
+                        value={row.ActionReq}
+                        onChange={(e) => handleInputChange(e, index)}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="input"
+                        type="text"
+                        name="ActionBy"
+                        value={row.ActionBy}
+                        onChange={(e) => handleInputChange(e, index)}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="input"
+                        type="date"
+                        name="TargetDate"
+                        value={row.TargetDate}
+                        onChange={(e) => handleInputChange(e, index)}
+                        required
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="input"
+                        type="file"
+                        name="Images"
+                        value={row.Images}
+                        onChange={(e) => handleInputChange(e, index)}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        className="input"
+                        type="text"
+                        name="ActionBy"
+                        value={row.ActionBy}
+                        onChange={(e) => handleInputChange(e, index)}
+                      />
+                    </td>
+                    <td>
+                      <button
+                        className="addBtn"
+                        type="button"
+                        onClick={handleAddRow}
+                      >
+                        Add Row
+                      </button>
+                      {index > 0 && (
+                        <button
+                          className="removeBtn"
+                          type="button"
+                          onClick={() => handleRemoveData(index)}
+                        >
+                          Remove Row
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="submitBtn">
+            <button type="submit">Submit</button>
+          </div>
         </form>
-        {show && (
-        <div>
-           <GridSection formData={formData} handleChange={handleInputChange} handleSubmit={handleSubmit} />
-        </div>
-          )}
       </div>
       <Table data={formData} />
     </>

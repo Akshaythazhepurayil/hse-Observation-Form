@@ -3,13 +3,58 @@ input {
   height: 40px;
   margin: 5px;
 }
-.submitBtn {
-  height: 40px;
-  margin-left: 60%;
-  font-weight: 400;
+
+.form-table-container {
+  display: flex;
+  justify-content: center;
+}
+
+.form-table {
+  width: 100%;
+  padding: 20px;
+  background-color: #f0f0f0;
   border-radius: 5px;
 }
-.submitBtn:hover {
-  background-color: green;
-  color: white;
+
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid black;
+  border-radius: 5px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+.input {
+  border: none;
+  border-radius: 3px;
+  background-color: #f0f0f0;
+}
+
+button {
+  margin-left: 80%;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: green;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.addBtn {
+  background-color: green;
+  margin-left: 10px;
+}
+.removeBtn {
+  background-color: #ff3333;
+  margin-left: 10px;
+}
+
