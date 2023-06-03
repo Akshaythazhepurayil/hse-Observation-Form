@@ -3,11 +3,11 @@ import Form from "../Components/Form";
 
 function HSEObservationForm() {
   return (
-    <div style={{ width: "500px", height: "900px", border: "1px solid gray" }}>
+    <div>
       <div>
         <h1>HSE Observation Form</h1>
       </div>
-      <div>
+      <div style={{  border: "1px solid gray" }}>
         <Form />
       </div>
     </div>
