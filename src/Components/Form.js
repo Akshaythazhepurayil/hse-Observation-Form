@@ -4,7 +4,7 @@ import "./Form.css";
 import Table from "./Table";
 
 function Form() {
-  const url = "http://localhost:3306/api/MainMenu/formdb";
+  // const url = "http://localhost:3306/api/MainMenu/formdb";
   const [rowCount, setRowCount] = useState(1);
   const [formData, setFormData] = useState({
     iTransId: "",
@@ -40,9 +40,9 @@ function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(url, formData)
+      .post("http://103.120.178.195/Sang.Ray.Mob.Api/Ray/PostHSE", formData)
       .then((response) => {
-        console.log("Data saved successfully:");
+        console.log("Data saved successfully:", response.data);
       })
       .catch((error) => {
         console.error("Error saving data:", error);
