@@ -60,6 +60,8 @@ const GridSection = () => {
   };
 
   return (
+    <>
+    <h2>Grid Section</h2>
     <div className="form-table-container">
       <form className="form-table" onSubmit={handleSubmit}>
         <table>
@@ -147,11 +149,11 @@ const GridSection = () => {
                 </td>
                 <td>
                   <button className='addBtn' type="button" onClick={addRow}>
-                    Add Row
+                    Add Data
                   </button>
                   {index > 0 && (
                     <button className='removeBtn' type="button" onClick={() => removeRow(index)}>
-                      Remove Row
+                      Remove Data
                     </button>
                   )}
                 </td>
@@ -164,6 +166,7 @@ const GridSection = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 
